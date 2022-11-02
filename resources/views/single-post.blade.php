@@ -3,6 +3,9 @@
 @section('title', 'Post')
 @section('content')
 
+@section("style")
+@endsection
+
 <!-- Page content-->
 <div class="container">
     <div class="row mt-5">
@@ -157,4 +160,7 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section("script")
 @endsection

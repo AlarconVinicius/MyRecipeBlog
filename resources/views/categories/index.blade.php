@@ -3,6 +3,9 @@
 @section('title', $page_section_title)
 @section('content')
 
+@section("style")
+@endsection
+
 <!-- Page content-->
 <div class="container mt-4">
     <h3 class="fw-bolder mb-3">{{ $main_section_title }}</h3>
@@ -30,4 +33,7 @@
         
     </div>
 </div>
+@endsection
+
+@section("script")
 @endsection

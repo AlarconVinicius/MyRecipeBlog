@@ -14,6 +14,9 @@
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        
+        <!-- Unique Styles -->
+        @yield("style")
     </head>
     <body class="bg-light">
         <!-- Responsive navbar-->
@@ -28,6 +31,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+        <!-- Unique Scripts -->
+        @yield("script")
     </body>
 </html>
 

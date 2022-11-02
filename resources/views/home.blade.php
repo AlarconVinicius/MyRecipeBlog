@@ -2,6 +2,10 @@
 
 @section('title', $page_section_title)
 @section('content')
+
+@section("style")
+@endsection
+
 <!-- Banner-->
 <header class=" border-bottom" style="background-color: #fff;">
     <div class="">
@@ -113,4 +117,7 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section("script")
 @endsection
