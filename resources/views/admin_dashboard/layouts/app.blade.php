@@ -25,10 +25,14 @@
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/header-colors.css') }}" />
-    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <title>@yield('title') | Dashboard</title>
 </head>
 
 <body>
+    @if(Session::has('success'))
+        <div class="general-message alert alert-info">{{ Session::get('success') }}</div>
+    @endif
 	<!--wrapper-->
 	<div class="wrapper">
 		<!--start header -->

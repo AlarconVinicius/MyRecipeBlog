@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-use App\Models\User;
-use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
+
 use App\Models\Image;
+use App\Models\Category;
+use App\Models\Difficulty;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["titulo", "slug", "resumo", "ingrediente", "modo_preparo", "conteudo", "user_id", "category_id"];
+    protected $fillable = ["titulo", "slug", "resumo", "conteudo", "tempo_preparo", "qtd_porcao", "user_id", "category_id", "difficulty_id"];
 
     public function author()
     {
@@ -29,6 +31,11 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function difficulty()
+    {
+        return $this->belongsTo(Difficulty::class);
     }
 
     public function image()

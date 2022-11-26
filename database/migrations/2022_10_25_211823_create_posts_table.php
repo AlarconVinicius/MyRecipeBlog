@@ -17,16 +17,22 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('slug')->unique();
-            $table->string('resumo');
-            $table->string('ingrediente');
-            $table->string('modo_preparo');
+            $table->text('resumo');
             $table->text('conteudo');
+            $table->integer('tempo_preparo');
+            $table->integer('qtd_porcao');
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->unsignedBigInteger('difficulty_id');
+            $table->foreign('difficulty_id')->references('id')->on('difficulties');
+
+            $table->integer('views')->default(0);
+            $table->string('status')->default('publicado');
 
             $table->timestamps();
         });

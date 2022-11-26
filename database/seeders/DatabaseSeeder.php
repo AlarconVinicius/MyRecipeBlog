@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Post::truncate();
         \App\Models\Image::truncate();
         \App\Models\Tag::truncate();
+        \App\Models\Difficulty::truncate();
 
         Schema::enableForeignKeyConstraints();
 
@@ -59,9 +60,13 @@ class DatabaseSeeder extends Seeder
             $user->image()->save(\App\Models\Image::factory()->make() );
         }
 
-        // Create categories and tags
+        // Create categories, tags and difficulties
         \App\Models\Category::factory(5)->create();
         \App\Models\Tag::factory(30)->create();
+        \App\Models\Difficulty::factory(1)->create(['nome' => 'Fácil']);
+        \App\Models\Difficulty::factory(1)->create(['nome' => 'Médio']);
+        \App\Models\Difficulty::factory(1)->create(['nome' => 'Difícil']);
+
 
         // Create posts
         $posts = \App\Models\Post::factory(65)->create();

@@ -24,27 +24,24 @@
                     <div class="text-muted fst-italic mb-3">{{ $post->created_at->diffForHumans() }} por {{ $post->author->full_name }}</div>
                     <p class="fs-10 mb-4">{{ $post->resumo }}</p>
                     <div class="info-icon position-relative">
-                        <p class="mx-4 text-dark"><i class="fa-solid fa-stopwatch"></i> <span>30min</span></p>
+                        <p class="mx-4 text-dark"><i class="fa-solid fa-stopwatch"></i> <span>{{ $post->tempo_preparo }} min</span></p>
                         <div class="separador border-dark"></div>
-                        <p class="mx-4"><i class='bx bx-dish'></i> <span>Fácil</span></p>
+                        <p class="mx-4"><i class='bx bx-dish'></i> <span>{{ $post->difficulty->nome }}</span></p>
                         <div class="separador border-dark"></div>
-                        <p class="mx-4"><i class="fa-sharp fa-solid fa-utensils"></i> <span>5 Porções</span></p>
+                        <p class="mx-4"><i class="fa-sharp fa-solid fa-utensils"></i> <span>{{ $post->qtd_porcao }} @if($post->qtd_porcao > 1 ) Porções @else Porção @endif</span></p>
                     </div>
                     
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded blog-img-single-post" src="{{ asset('storage/' .$post->image->path) }}" alt="..."/></figure>
+                <figure class="mb-4"><img class="img-fluid rounded blog-img-single-post" src="{{ asset($post->image ? 'storage/' . $post->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="..."/></figure>
                 {{-- <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." width="900px" height="400px"/></figure>{{ asset('storage/' .$post->image->path) }} --}}
                 <!-- Post content-->
                 <section class="mb-5">
-                    <h2 class="fw-bolder mb-4 mt-5">Ingredientes</h2>
-                    <p class="fs-5 mb-4">● {{ $post->ingrediente }}</p>
-                    <p class="fs-5 mb-4">1/2 xícara de pimentões em cubos</p>
+                    <p class="fs-5 mb-4">{!! $post->conteudo !!}</p>
+                    {{-- <p class="fs-5 mb-4">1/2 xícara de pimentões em cubos</p>
                     <p class="fs-5 mb-4">1 xícara de berinjela em cubos</p>
                     <p class="fs-5 mb-4">1/2 xícara de tomate cereja</p>
-                    <p class="fs-5 mb-4">1 colher de sopa de azeite</p>
-                    <h2 class="fw-bolder mb-4 mt-5">Modo de Preparo</h2>
-                    <p class="fs-5 mb-4">● {{ $post->modo_preparo }}</p>
+                    <p class="fs-5 mb-4">1 colher de sopa de azeite</p> --}}
                 </section>
             </article>
             <section class="mb-5">
@@ -99,64 +96,19 @@
         <!-- Side widgets-->
         <div class="col-lg-4">
             <!-- Search widget-->
-            <div class="card mb-4">
-                <div class="card-header text-white" style="background-color:rgb(251, 165, 16);">Pesquisar</div>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Encontre uma receita..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button class="btn text-white" style="background-color: rgb(255, 106, 40);" id="button-search" type="button">Go!</button>
-                    </div>
-                </div>
-            </div>
+            <x-blog.side-search />
+            
             <!-- Categories widget-->
-            <div class="card mb-4">
-                <div class="card-header text-white" style="background-color:rgb(251, 165, 16);">Categorias</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">Web Design</a></li>
-                                <li><a href="#!">HTML</a></li>
-                                <li><a href="#!">Freebies</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">JavaScript</a></li>
-                                <li><a href="#!">CSS</a></li>
-                                <li><a href="#!">Tutorials</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <x-blog.side-categories :categories="$categories"/>
+            
             <!-- Side widget-->
             <div class="card mb-4">
                 <div class="card-header text-white" style="background-color:rgb(251, 165, 16);">Side Widget</div>
                 <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
             </div>
             <!-- Tag widget -->
-            <div class="card mb-4">
-                <div class="card-header text-white" style="background-color:rgb(251, 165, 16);">Tags</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">Web Design</a></li>
-                                <li><a href="#!">HTML</a></li>
-                                <li><a href="#!">Freebies</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">JavaScript</a></li>
-                                <li><a href="#!">CSS</a></li>
-                                <li><a href="#!">Tutorials</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>  
+            <x-blog.side-tags :tags="$tags"/>
+            
         </div>
     </div>
 </div>

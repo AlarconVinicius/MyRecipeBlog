@@ -18,7 +18,8 @@
             <div class="carousel-inner">
                 @foreach($latest_posts as $key => $latest_post)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }} position-relative">
-                    <a class="a-blog-img" href="{{ route('posts.show', $latest_post) }}"><img src="{{ asset('storage/' .$latest_post->image->path) }}" class="d-block blog-img-slide" alt="..." width="100%" height="auto"></a>
+                    <a class="a-blog-img" href="{{ route('posts.show', $latest_post) }}"><img src="{{ asset($latest_post->image ? 'storage/' . $latest_post->image->path : 'storage/placeholders/placeholder_capa.svg' . '') }}" class="d-block blog-img-slide" alt="..." width="100%" height="auto"></a>
+                    {{-- <a class="a-blog-img" href="{{ route('posts.show', $latest_post) }}"><img src="{{ asset('storage/' .$latest_post->image->path) }}" class="d-block blog-img-slide" alt="..." width="100%" height="auto"></a> --}}
                     <div class="carousel-caption d-md-block position-absolute top-50 start-50 translate-middle" width="100%" height="auto">
                         <a href="{{ route('posts.show', $latest_post) }}" class="text-decoration-none text-white">
                             <h4 class="fw-bolder mb-1">{{ $latest_post->category->nome }}</h4>
@@ -59,7 +60,8 @@
                 <div class="col-lg-6">
                     <!-- Blog post-->
                     <div class="card mb-4 rounded-5 " >
-                        <a href="{{ route('posts.show', $post) }}"><img class="card-img-top blog-img-post" src="{{ asset('storage/' .$post->image->path) }}" alt="..." /></a>
+                        <a href="{{ route('posts.show', $post) }}"><img class="card-img-top blog-img-post" src="{{ asset($post->image ? 'storage/' . $post->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="..." /></a>
+                        {{-- <a href="{{ route('posts.show', $post) }}"><img class="card-img-top blog-img-post" src="{{ asset('storage/' .$post->image->path) }}" alt="..." /></a> --}}
                         <div class="card-body">
                             {{-- <div style="display: flex">
                                 <div class="small text-muted">{{ $post->created_at->diffForHumans() . ' |' }} </div>
@@ -69,11 +71,11 @@
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{ $post->category->nome }}</a>
                             <a href="{{ route('posts.show', $post) }}" class="text-decoration-none text-dark"><h2 class="card-title h4">{{ \Str::limit($post->titulo, 25) }}</h2></a>
                             <div class="info-icon position-relative">
-                                <p class="mx-4 text-dark"><i class="fa-solid fa-stopwatch"></i> <span>30min</span></p>
+                                <p class="mx-4 text-dark"><i class="fa-solid fa-stopwatch"></i> <span>{{ $post->tempo_preparo }} min</span></p>
                                 <div class="separador border-dark"></div>
-                                <p class="mx-4"><i class='bx bx-dish'></i> <span>Fácil</span></p>
+                                <p class="mx-4"><i class='bx bx-dish'></i> <span>{{ $post->difficulty->nome }}</span></p>
                                 <div class="separador border-dark"></div>
-                                <p class="mx-4"><i class="fa-sharp fa-solid fa-utensils"></i> <span>5 Porções</span></p>
+                                <p class="mx-4"><i class="fa-sharp fa-solid fa-utensils"></i> <span>{{ $post->qtd_porcao }} @if($post->qtd_porcao > 1 ) Porções @else Porção @endif</span></p>
                             </div>
                         </div>
                     </div>   

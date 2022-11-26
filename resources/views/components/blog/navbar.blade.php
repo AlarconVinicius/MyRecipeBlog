@@ -12,7 +12,7 @@
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('login') }}">Entrar / Registrar</a></li>
                 @endguest
                 @auth
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('admin.posts.create') }}">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page"  
                         onclick="event.preventDefault();
                         document.getElementById('nav-logout-form').submit();"
