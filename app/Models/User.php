@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Post;
+use App\Models\Role;
+use App\Models\Image;
+use App\Models\Category;
+use Laravel\Sanctum\HasApiTokens;
+
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-
-use App\Models\Role;
-use App\Models\Post;
-use App\Models\Image;
 
 class User extends Authenticatable
 {
@@ -62,5 +63,9 @@ class User extends Authenticatable
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 }

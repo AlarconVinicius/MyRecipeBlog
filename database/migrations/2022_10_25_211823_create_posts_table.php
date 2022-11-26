@@ -22,11 +22,8 @@ class CreatePostsTable extends Migration
             $table->integer('tempo_preparo');
             $table->integer('qtd_porcao');
             
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+           $table->foreignId('user_id')->constrained()->onDelete('cascade');
+           $table->foreignId('category_id');
 
             $table->unsignedBigInteger('difficulty_id');
             $table->foreign('difficulty_id')->references('id')->on('difficulties');

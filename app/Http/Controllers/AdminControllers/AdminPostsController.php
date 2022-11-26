@@ -74,12 +74,6 @@ class AdminPostsController extends Controller
         return redirect()->route('admin.posts.create')->with('success', 'Post criado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -100,13 +94,6 @@ class AdminPostsController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Post $post)
     {
         $this->rules['capa_post'] = 'nullable|file|mimes:jpg,png';
@@ -131,13 +118,7 @@ class AdminPostsController extends Controller
         }
         return redirect()->route('admin.posts.edit', $post)->with('success', 'Post atualizado com sucesso!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Post $post)
     {
         $post->delete();
