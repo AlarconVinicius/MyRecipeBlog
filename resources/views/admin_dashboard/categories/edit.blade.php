@@ -54,12 +54,12 @@
                                         </div>
                                         
                                         <div class='row'>
-                                            <button class="col-md-2 btn btn-primary me-3" type='submit'>Atualizar Categoria</button>
                                             <a 
                                             class="col-md-2 btn btn-danger"
                                             href="#" 
                                             onclick="event.preventDefault(); document.querySelector('#delete_category_{{ $category->id }}').submit()">Deletar Categoria</a>
-                                            
+                                            <button class="col-md-2 btn btn-primary me-3" type='submit'>Atualizar Categoria</button>
+                                                                                       
                                         </div>
                                     </div>
                                 

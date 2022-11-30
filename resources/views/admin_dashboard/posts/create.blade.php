@@ -6,6 +6,7 @@
 
 <link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
+<link href="{{ asset('admin_dashboard_assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
 
 <script src="https://cdn.tiny.cloud/1/966bvxgnw876uam359k6x0hl1748mknvtjo83mkosgndlwts/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 @endsection
@@ -70,6 +71,12 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        <div class="col-3 mb-3">
+                                            <label class="form-label">Tags</label>
+                                            <input type="text" class="form-control" data-role="tagsinput" name="tags" value="{{ old('tags') }}">
+                                        </div>
+
                                         <div class="col-3 mb-3">
                                             <label for="inputProductTitle" class="form-label">Tempo de Preparo</label>
                                             <input type="number" name="tempo_preparo"  value="{{ old('tempo_preparo') }}" required class="form-control" id="inputProductTitle" placeholder="Enter product title">
@@ -148,6 +155,7 @@
 @section("script")
 <script src="{{ asset('admin_dashboard_assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js') }}"></script>
 <script src="{{ asset('admin_dashboard_assets/plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('admin_dashboard_assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 <script>
     $(document).ready(function () {
     

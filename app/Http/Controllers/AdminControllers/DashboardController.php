@@ -9,6 +9,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin_dashboard.index');
+        $page_section_title = "Home";
+        $main_section_title = "Home";
+        return view('admin_dashboard.index', [
+            'page_section_title' => $page_section_title,
+            'main_section_title' => $main_section_title,
+        ]);
     }
 }

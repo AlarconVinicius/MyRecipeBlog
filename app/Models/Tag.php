@@ -10,7 +10,7 @@ use App\Models\Post;
 class Tag extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['nome'];
     public function posts()
     {
         return $this->belongsToMany(Post::class);

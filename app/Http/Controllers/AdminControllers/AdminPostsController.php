@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\AdminControllers;
 
+use App\Models\Tag;
 use App\Models\Post;
-use App\Models\Category;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +27,7 @@ class AdminPostsController extends Controller
     {
         $page_section_title = "Posts";
         $main_section_title = "Todos os Post";
-        $posts = Post::with('category')->get();
+        $posts = Post::with('category')->orderBy('id', 'DESC')->paginate(15);
         return view('admin_dashboard.posts.index', [
             'page_section_title' => $page_section_title,
             'main_section_title' => $main_section_title,
@@ -71,6 +72,16 @@ class AdminPostsController extends Controller
             ]);
 
         }
+        $tags = explode(',', $request->input('tags'));
+        $tags_ids = [];
+        foreach($tags as $tag){
+            $tag_obj = Tag::create(['nome' => trim($tag)]);
+            $tags_ids[] = $tag_obj->id;
+        }
+        
+        if(count($tags_ids) > 0)
+            $post->tags()->sync( $tags_ids );
+
         return redirect()->route('admin.posts.create')->with('success', 'Post criado com sucesso!');
     }
 
@@ -86,10 +97,19 @@ class AdminPostsController extends Controller
 
         $categories = Category::pluck('nome', 'id');
 
+        $tags = '';
+        foreach($post->tags as $key => $tag) {
+            $tags .= $tag->nome;
+            if($key !== count($post->tags) -1) {
+                $tags.= ', ';
+            }
+        }
+
         return view('admin_dashboard.posts.edit',  [
             'page_section_title' => $page_section_title,
             'main_section_title' => $main_section_title,
             'post' => $post,
+            'tags' => $tags,
             'categories' => $categories,
         ]);
     }
@@ -116,11 +136,26 @@ class AdminPostsController extends Controller
             ]);
 
         }
+
+        $tags = explode(',', $request->input('tags'));
+        $tags_ids = [];
+        foreach($tags as $tag){
+            $tag_exist = $post->tags()->where('nome', trim($tag) )->count();
+            if($tag_exist == 0) {
+                $tag_obj = Tag::create(['nome' => trim($tag)]);
+                $tags_ids[] = $tag_obj->id;
+            }
+        }
+        
+        if(count($tags_ids) > 0)
+            $post->tags()->syncWithoutDetaching( $tags_ids );
+
         return redirect()->route('admin.posts.edit', $post)->with('success', 'Post atualizado com sucesso!');
     }
     
     public function destroy(Post $post)
     {
+        $post->tags()->delete();
         $post->delete();
         return redirect()->route('admin.posts.index')->with('success', 'Post deletado com sucesso!');;
     }

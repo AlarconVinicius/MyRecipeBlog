@@ -28,11 +28,11 @@
                             <h1 class="fw-bolder mb-1">{{ $latest_post->titulo }}</h1>
                         </a>
                         <div class="info-icon position-relative">
-                            <p class="mx-4"><i class="fa-solid fa-stopwatch"></i> <span>30min</span></p>
+                            <p class="mx-4"><i class="fa-solid fa-stopwatch"></i> <span>{{ $latest_post->tempo_preparo }} min</span></p>
                             <div class="separador"></div>
-                            <p class="mx-4"><i class='bx bx-dish'></i> <span>Fácil</span></p>
+                            <p class="mx-4"><i class='bx bx-dish'></i> <span>{{ $latest_post->difficulty->nome }}</span></p>
                             <div class="separador"></div>
-                            <p class="mx-4"><i class="fa-sharp fa-solid fa-utensils"></i> <span>5 Porções</span></p>
+                            <p class="mx-4"><i class="fa-sharp fa-solid fa-utensils"></i> <span>{{ $latest_post->qtd_porcao }} @if($latest_post->qtd_porcao > 1 ) Porções @else Porção @endif</span></p>
                         </div>
                     </div>
                 </div>

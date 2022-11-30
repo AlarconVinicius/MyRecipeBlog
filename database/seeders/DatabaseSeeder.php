@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         // Create categories, tags and difficulties
         \App\Models\Category::factory()->create(['nome' => 'Sem Categoria', 'slug' => 'sem-categoria']);
         \App\Models\Category::factory(5)->create();
-        \App\Models\Tag::factory(30)->create();
+        \App\Models\Tag::factory(10)->create();
         \App\Models\Difficulty::factory(1)->create(['nome' => 'Fácil']);
         \App\Models\Difficulty::factory(1)->create(['nome' => 'Médio']);
         \App\Models\Difficulty::factory(1)->create(['nome' => 'Difícil']);

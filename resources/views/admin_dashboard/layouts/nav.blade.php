@@ -13,7 +13,7 @@
             <!--navigation-->
             <ul class="metismenu" id="menu">
                 <li>
-                    <a href="{{ route('admin.index') }}" target="_blank">
+                    <a href="{{ route('admin.index') }}">
                     <div class="parent-icon"><i class='bx bx-home-circle'></i></div>
                         <div class="menu-title">Dashboard</div>
                     </a>
@@ -48,6 +48,12 @@
                         </li>
                         
                     </ul>
+                </li>
+                <li>
+                    <a href="{{ route('admin.tags.index') }}">
+                    <div class="parent-icon"><i class='bx bx-purchase-tag'></i></div>
+                        <div class="menu-title">Tags</div>
+                    </a>
                 </li>
             </ul>
             <!--end navigation-->
