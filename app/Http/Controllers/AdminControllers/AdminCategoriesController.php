@@ -14,7 +14,7 @@ class AdminCategoriesController extends Controller
         'slug' => 'required|unique:categories,slug|min:3|max:50',
     ];
 
-    public function index() //RESOLVER O DELETE DA CATEGORIA 
+    public function index()
     {
         $page_section_title = "Nova Categoria";
         $main_section_title = "Nova Categoria";

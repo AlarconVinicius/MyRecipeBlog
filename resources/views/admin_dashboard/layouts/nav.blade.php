@@ -18,7 +18,7 @@
                         <div class="menu-title">Dashboard</div>
                     </a>
                 </li>
-
+                <hr>
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class='bx bx-message-square-edit'></i>
@@ -54,6 +54,22 @@
                     <div class="parent-icon"><i class='bx bx-purchase-tag'></i></div>
                         <div class="menu-title">Tags</div>
                     </a>
+                </li>
+                <hr>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-key'></i>
+                        </div>
+                        <div class="menu-title">Regras</div>
+                    </a>
+
+                    <ul>
+                        <li> <a href="{{ route('admin.roles.index') }}"><i class="bx bx-right-arrow-alt"></i>Regras</a>
+                        </li>
+                        <li> <a href="{{ route('admin.roles.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Regra</a>
+                        </li>
+                        
+                    </ul>
                 </li>
             </ul>
             <!--end navigation-->

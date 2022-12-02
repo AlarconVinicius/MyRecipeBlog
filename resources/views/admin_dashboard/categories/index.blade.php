@@ -17,7 +17,7 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Categorias</li>
+								<li class="breadcrumb-item active" aria-current="page">{{ $main_section_title }}</li>
 							</ol>
 						</nav>
 					</div>
@@ -58,7 +58,7 @@
                                                 </div>
                                             </td>
                                             <td>{{ $category->nome }}</td>
-                                            <td>{{ $category->user->nome }}</td>
+                                            <td>{{ $category->user->full_name }}</td>
                                             <td><a class="btn btn-primary btn-sm" href="{{ route('admin.categories.show', $category) }}">Posts Relacionados</a></td>
                                             <td>{{ $category->created_at->diffForHumans() }}</td>
                                             <td>

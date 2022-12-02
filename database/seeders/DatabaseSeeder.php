@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Str;
-
 use App\Models\Role;
+use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +34,19 @@ class DatabaseSeeder extends Seeder
         // Create roles and users
         \App\Models\Role::factory(1)->create(['nome' => 'administrador']);
         \App\Models\Role::factory(1)->create(['nome' => 'usuário']);
+
+        $blog_routes = Route::getRoutes();
+        $permissions_ids = [];
+        foreach($blog_routes as $route)
+        {
+            if(strpos($route->getName(), 'admin') !== false)
+            {
+                $permission = \App\Models\Permission::create(['nome' => $route->getName()]);
+                $permissions_ids[] = $permission->id; 
+            }
+        }
+
+        \App\Models\Role::where('nome', 'administrador')->first()->permissions()->sync($permissions_ids);
 
         \App\Models\User::factory(1)->create([
             'first_name' => 'Vinícius',

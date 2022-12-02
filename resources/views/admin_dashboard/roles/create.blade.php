@@ -15,6 +15,8 @@
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.roles.index') }}">Regras</i></a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">Categorias</li>
                         </ol>
                     </nav>
@@ -25,49 +27,45 @@
             
             <div class="card">
                 <div class="card-body p-4">
-                    <h5 class="card-title">Editar Categoria: {{ $category->nome }}</h5>
+                    <h5 class="card-title">Nova Regra</h5>
                     <hr/>
-                    <form action="{{ route('admin.categories.update', $category) }}" method="POST">
+                    <form action="{{ route('admin.roles.store') }}" method="POST">
                         @csrf
-                        @method('PATCH')
                         <div class="form-body mt-4">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="border border-3 p-4 rounded">
                                         <div class="row">
-                                            <div class="col-6 mb-3">
+                                            <div class="col-12 mb-3">
                                                 <label for="inputProductTitle" class="form-label">Nome</label>
-                                                <input type="text" name="nome" value="{{ old('nome', $category->nome) }}" required class="form-control" id="inputProductTitle" placeholder="Enter product title">
+                                                <input type="text" name="nome" value="{{ old('nome') }}" required class="form-control" id="inputProductTitle" placeholder="Enter product title">
     
                                                 @error('nome')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                            <div class="col-6 mb-3">
-                                                <label for="inputProductTitle" class="form-label">Slug</label>
-                                                <input type="text" name="slug" value="{{ old('slug', $category->slug) }}" required class="form-control" id="inputProductTitle" placeholder="Enter product title">
-    
-                                                @error('slug')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
+                                            <div class="col-12 mb-3">
+                                                <label for="inputProductTitle" class="form-label">Permissões da Regra</label>
+                                                <div class="row">
+                                                    @foreach($permissions as $permission)
+                                                        <div class="col-3">
+                                                            <div class="form-check">
+                                                                <input style="cursor: pointer" class="form-check-input" type="checkbox" name='permissions[]' value="{{ $permission->id }}" id="permission_{{ $permission->nome }}">
+                                                                <label style="cursor: pointer"class="form-check-label" for="permission_{{ $permission->nome }}">{{ $permission->nome }}</label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                         
-                                        <div class='row'>
-                                            <a 
-                                            class="col-md-2 btn btn-danger me-2"
-                                            href="#" 
-                                            onclick="event.preventDefault(); document.querySelector('#delete_category_{{ $category->id }}').submit()">Deletar Categoria</a>
-                                            <button class="col-md-2 btn btn-primary me-3" type='submit'>Atualizar Categoria</button>
-                                                                                       
-                                        </div>
+                                        <button class="col-2 btn btn-primary" type='submit'>Adicionar Regra</button>
                                     </div>
                                 
                                 </div>
                             </div><!--end row-->
                         </div>
                     </form>
-                    <form method="POST" action="{{ route('admin.categories.destroy', $category) }}" id="delete_category_{{ $category->id }}">@csrf @method('DELETE')</form>
                 </div>
             </div>
         </div>
