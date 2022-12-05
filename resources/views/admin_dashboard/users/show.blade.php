@@ -17,9 +17,9 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item"><a href="{{ route('admin.tags.index') }}">Tag</a>
+								<li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Usuários</a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">{{ $tag->nome }}</li>
+								<li class="breadcrumb-item active" aria-current="page">{{ $user->nome }}</li>
 							</ol>
 						</nav>
 					</div>
@@ -49,7 +49,7 @@
 									</tr>
 								</thead>
 								<tbody> 	
-                                    @foreach($tag->posts as $post)
+                                    @foreach($user->posts as $post)
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">

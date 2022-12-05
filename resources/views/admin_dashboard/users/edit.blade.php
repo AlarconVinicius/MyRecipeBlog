@@ -1,0 +1,157 @@
+@extends('admin_dashboard.layouts.app')
+
+@section('title', $page_section_title)
+@section('content')
+@section("style")
+
+<link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
+
+@endsection
+    
+    @section("wrapper")
+    <!--start page wrapper -->
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">{{ $main_section_title }}</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Editar Usuário: {{ $user->full_name }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                
+            </div>
+            <!--end breadcrumb-->
+            
+            <div class="card">
+                <div class="card-body p-4">
+                    <h5 class="card-title">Novo Usuário</h5>
+                    <hr/>
+                    <form action="{{ route('admin.users.update', $user) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+                        <div class="form-body mt-4">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="border border-3 p-4 rounded row">
+                                        <div class="col-4 mb-3">
+                                            <label for="input_first_name" class="form-label">Primeiro Nome</label>
+                                            <input type="text" name="first_name" value="{{ old('first_name', $user->first_name) }}" required class="form-control" id="input_first_name" placeholder="Enter product title">
+
+                                            @error('first_name')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="input_last_name" class="form-label">Último Nome</label>
+                                            <input type="text" name="last_name" value="{{ old('last_name', $user->last_name) }}" required class="form-control" id="input_last_name" placeholder="Enter product title">
+
+                                            @error('last_name')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="input_full_name" class="form-label">Nome Completo</label>
+                                            <input type="text" name="full_name" value="{{ old('full_name', $user->full_name) }}" required class="form-control" id="input_full_name" placeholder="Enter product title">
+
+                                            @error('full_name')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="input_email" class="form-label">E-mail</label>
+                                            <input type="email" name="email" value="{{ old('email', $user->email) }}" required class="form-control" id="input_email" placeholder="Enter product title">
+
+                                            @error('email')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        
+
+                                        <div class="col-9 mb-3">
+                                            <label for="input_password" class="form-label">Senha</label>
+                                            <input type="password" name="password" class="form-control" id="input_password" placeholder="Enter product title">
+
+                                            @error('password')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-3 mb-3">
+                                            <label for="input_role_id" class="form-label">Regras</label>
+                                            <div class="mb-3">
+                                                <select name="role_id" required class="single-select">
+                                                    @foreach($roles as $key => $role)
+                                                    <option {{ $user->role_id === $key ? 'selected' : '' }} value="{{ $key }}">{{ $role }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                @error('role_id')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="mb-3">
+                                                    <label for="input_image" class="form-label">Foto de Perfil</label>
+                                                    <input class="form-control" id="input_image" name="image" type="file">
+        
+                                                    @error('image')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <img style='width: 100%' src="{{ asset($user->image ? 'storage/' . $user->image->path : 'storage/placeholders/user_placeholder.png' . '') }}" alt="Foto de Perfil" class='img-responsive'>
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <a 
+                                            class="col-md-2 btn btn-danger me-2"
+                                            href="#" 
+                                            onclick="event.preventDefault(); document.querySelector('#delete_user_{{ $user->id }}').submit()">Deletar Usuário</a>
+                                            <button class=" col-2 btn btn-primary" type='submit'>Atualizar Usuário</button>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div><!--end row-->
+                        </div>
+                    </form>
+                    <form id="delete_user_{{ $user->id }}" method="POST" action="{{ route('admin.users.destroy', $user) }}">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end page wrapper -->
+    @endsection
+
+@section("script")
+<script src="{{ asset('admin_dashboard_assets/plugins/select2/js/select2.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+    
+
+        $('.single-select').select2({
+            theme: 'bootstrap4',
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            allowClear: Boolean($(this).data('allow-clear')),
+        });
+
+        setTimeout(() => {
+            $(".general-message").fadeOut();
+        }, 5000);
+    });
+</script>
+@endsection

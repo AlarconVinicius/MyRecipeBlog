@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminControllers\AdminTagsController;
 use App\Http\Controllers\AdminControllers\DashboardController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\AdminRolesController;
+use App\Http\Controllers\AdminControllers\AdminUsersController;
 use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 
 // Route::get('/teste', function () {
@@ -32,13 +33,14 @@ Route::get('/tags/{tag:nome}', [TagController::class, 'show'])->name('tags.show'
 
 
 //Admin Dashboard Routes
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'isadmin', 'check_permissions'])->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'check_permissions'])->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::post('upload_tinymce_image', [TinyMCEController::class, 'upload_tinymce_image'])->name('upload_tinymce_image');
     Route::resource('posts', AdminPostsController::class);
     Route::resource('categories', AdminCategoriesController::class);
     Route::resource('tags', AdminTagsController::class)->only(['index', 'show', 'destroy']);
-    Route::resource('roles', AdminRolesController::class);
+    Route::resource('roles', AdminRolesController::class)->except('show');
+    Route::resource('users', AdminUsersController::class);
     
 });
 

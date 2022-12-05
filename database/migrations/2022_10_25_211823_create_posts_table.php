@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->integer('tempo_preparo');
             $table->integer('qtd_porcao');
             
-           $table->foreignId('user_id')->constrained()->onDelete('cascade');
+           $table->foreignId('user_id');
            $table->foreignId('category_id');
 
             $table->unsignedBigInteger('difficulty_id');

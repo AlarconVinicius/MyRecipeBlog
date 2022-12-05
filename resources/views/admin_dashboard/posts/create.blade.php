@@ -132,7 +132,7 @@
                                         
                                         <div class="mb-3">
                                             <label for="inputProductDescription" class="form-label">Imagem da Capa</label>
-                                            <input id="capa_post" name="capa_post" value="{{ old('capa_post') }}" type="file" accept="image/*">
+                                            <input class="form-control" id="capa_post" name="capa_post" value="{{ old('capa_post') }}" type="file" accept="image/*">
 
                                             @error('capa_post')
                                                 <p class="text-danger">{{ $message }}</p>
