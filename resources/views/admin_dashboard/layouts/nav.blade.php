@@ -86,6 +86,13 @@
                         
                     </ul>
                 </li>
+                <hr>
+                <li>
+                    <a href="{{ route('admin.setting.edit') }}">
+                    <div class="parent-icon"><i class='bx bx-bulb'></i></div>
+                        <div class="menu-title">Configuração</div>
+                    </a>
+                </li>
             </ul>
             <!--end navigation-->
         </div>

@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\CategoryController;
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminControllers\TinyMCEController;
 use App\Http\Controllers\AdminControllers\AdminTagsController;
 use App\Http\Controllers\AdminControllers\DashboardController;
+use App\Http\Controllers\AdminControllers\AdminSettingController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\AdminRolesController;
 use App\Http\Controllers\AdminControllers\AdminUsersController;
@@ -23,6 +25,7 @@ use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 
 // Front User Routes 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', AboutController::class)->name('about');
 
 Route::get('/post/{post:slug}', [PostsController::class, 'show'])->name('posts.show');
 
@@ -42,6 +45,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'check_permissions']
     Route::resource('roles', AdminRolesController::class)->except('show');
     Route::resource('users', AdminUsersController::class);
     
+    Route::get('about', [AdminSettingController::class, 'edit'])->name('setting.edit');
+    Route::post('about', [AdminSettingController::class, 'update'])->name('setting.update');
 });
 
 Route::get('/dashboard', function () {

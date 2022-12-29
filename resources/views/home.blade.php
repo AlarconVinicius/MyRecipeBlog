@@ -108,11 +108,9 @@
             <!-- Categories widget-->
             <x-blog.side-categories :categories="$categories"/>
             
-            <!-- Side widget-->
-            <div class="card mb-4">
-                <div class="card-header text-white" style="background-color:rgb(251, 165, 16);">Side Widget</div>
-                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-            </div>
+            <!-- Recent Posts-->
+            <x-blog.side-latest-posts :latestPosts="$latest_posts"/>
+            
             <!-- Tag widget -->
             <x-blog.side-tags :tags="$tags"/>
             

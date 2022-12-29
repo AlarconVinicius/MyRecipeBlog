@@ -6,8 +6,8 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Início</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('categories.index') }}">Categorias</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Sobre</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contato</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Sobre</a></li>
+                {{-- <li class="nav-item"><a class="nav-link" href="#!">Contato</a></li> --}}
                 @guest
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('login') }}">Entrar / Registrar</a></li>
                 @endguest

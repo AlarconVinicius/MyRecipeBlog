@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
 
         // Create roles and users
         \App\Models\Role::factory(1)->create(['nome' => 'administrador']);
+        \App\Models\Role::factory(1)->create(['nome' => 'editor']);
         \App\Models\Role::factory(1)->create(['nome' => 'usuário']);
 
         $blog_routes = Route::getRoutes();
@@ -94,5 +95,7 @@ class DatabaseSeeder extends Seeder
             $post->tags()->sync( $tags_ids );
             $post->image()->save(\App\Models\Image::factory()->make() );
         }
+        
+        \App\Models\Setting::factory(1)->create();
     }
 }
