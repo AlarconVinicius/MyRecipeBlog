@@ -57,7 +57,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <img style='width: 100%' src="{{ asset($setting->sobre_image ? 'storage/' . $setting->sobre_image : 'storage/placeholders/user_placeholder.png' . '') }}" alt="Foto do Sobre" class='img-responsive img-thumbnail p-2'>
+                                                <img style='width: 100%' src="{{ asset($setting->sobre_image ? $setting->sobre_image : 'storage/placeholders/user_placeholder.png' . '') }}" alt="Foto do Sobre" class='img-responsive img-thumbnail p-2'>
                                             </div>
                                         </div>
                                         <button class="ms-3 col-2 btn btn-primary" type="submit">Atualizar</button>

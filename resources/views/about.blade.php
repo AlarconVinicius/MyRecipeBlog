@@ -16,7 +16,7 @@
                 <div class="col-lg-6">
                     <!-- Blog post-->
                     <div class="card mb-4 rounded-3 " >
-                        <img class="card-img-top" src="{{ asset($setting->sobre_image ? 'storage/' . $setting->sobre_image : 'storage/placeholders/user_placeholder.png' . '') }}" alt="Imagem do Sobre" />
+                        <img class="card-img-top" src="{{ asset($setting->sobre_image ? $setting->sobre_image : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="Imagem do Sobre" />
                         {{-- <img class="card-img-top blog-img-post" src="{{ asset($post->image ? 'storage/' . $post->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="..." /> --}}
                         
                     </div>   
