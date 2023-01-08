@@ -37,6 +37,14 @@
                                 <div class="col-lg-12">
                                     <div class="border border-3 p-4 rounded row">
                                         <div class="col-12 mb-3">
+                                            <label for="sobre_resumo" class="form-label">Resumo</label>
+                                            <input type="text" name="sobre_resumo" value="{{ old('sobre_resumo', $setting->sobre_resumo) }}" required class="form-control" id="sobre_resumo" placeholder="Enter product title">
+
+                                            @error('sobre_resumo')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12 mb-3">
                                             <label for="quem_somos" class="form-label">Quem somos</label>
                                             <textarea name="sobre_quem_somos" class="form-control" id="quem_somos" rows="3">{{ old('quem_somos', $setting->sobre_quem_somos) }}</textarea>
 

@@ -16,6 +16,7 @@ class CreateDifficultiesTable extends Migration
         Schema::create('difficulties', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

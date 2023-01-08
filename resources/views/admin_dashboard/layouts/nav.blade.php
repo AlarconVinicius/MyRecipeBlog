@@ -55,6 +55,21 @@
                         <div class="menu-title">Tags</div>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-menu'></i>
+                        </div>
+                        <div class="menu-title">Dificuldade</div>
+                    </a>
+
+                    <ul>
+                        <li> <a href="{{ route('admin.difficulties.index') }}"><i class="bx bx-right-arrow-alt"></i>Dificuldades</a>
+                        </li>
+                        <li> <a href="{{ route('admin.difficulties.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Dificuldade</a>
+                        </li>
+                        
+                    </ul>
+                </li>
                 <hr>
                 <li>
                     <a href="javascript:;" class="has-arrow">

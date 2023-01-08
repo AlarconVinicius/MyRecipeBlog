@@ -1,15 +1,11 @@
-@props(['tags'])
-<div class="card mb-4">
-    <div class="card-header text-white" style="background-color:rgb(251, 165, 16);">Tags</div>
-    <div class="card-body">
-        <div class="row">
-            @foreach($tags as $tag)
-            <div class="col-sm-6">
-                <ul class="list-unstyled mb-0">
-                    <li><a href="{{ route('tags.show', $tag) }}">{{ $tag->nome }}</a></li>
-                </ul>
-            </div>
-            @endforeach
-        </div>
+@props(['tags']) 
+<div class="sidebar__item__categories">
+    <div class="sidebar__item__title">
+        <h6>Tags</h6>
     </div>
-</div>  
+    <ul class="row">
+        @foreach($tags as $tag)
+        <li class="col-sm-4"><a href="{{ route('tags.show', $tag) }}">{{ $tag->nome }}</a></li>
+        @endforeach
+    </ul>
+</div>

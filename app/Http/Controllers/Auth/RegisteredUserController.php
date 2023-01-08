@@ -22,7 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('auth.blog-auth');
+        // return view('auth.register');
     }
 
     /**
@@ -33,6 +34,30 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    // public function store(Request $request)
+    // {
+    //     // dd($request->all());
+    //     $validated = $request->validate($this->rules);
+    //     // $validated['password'] = password_hash($request->input('password'), PASSWORD_DEFAULT);
+    //     $validated['password'] = Hash::make($request->input('password'));
+    //     $user = User::create($validated);
+
+    //     if($request->has('image'))
+    //     {
+    //         $image = $request->file('image');
+    //         $filename = $image->getClientOriginalName();
+    //         $file_extension = $image->getClientOriginalExtension();
+    //         $path = $image->store('images', 'public');
+
+    //         $user->image()->create([
+    //             'nome' => $filename,
+    //             'extensao' => $file_extension,
+    //             'path' => $path
+    //         ]);
+    //     }
+        
+    //     return redirect()->route('admin.users.create')->with('success', 'Usuário criado com sucesso!');
+    // }
     public function store(Request $request)
     {
         $role = Role::where('nome', '=', 'usuário')->first();

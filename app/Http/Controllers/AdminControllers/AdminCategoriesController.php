@@ -11,7 +11,8 @@ class AdminCategoriesController extends Controller
 {
     private $rules = [
         'nome' => 'required|min:3|max:30',
-        'slug' => 'required|unique:categories,slug|min:3|max:50',
+        'slug' => 'required|unique:categories,slug|min:3|max:50', 
+        'imagem' => 'nullable',
     ];
 
     public function index()
@@ -41,7 +42,14 @@ class AdminCategoriesController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate($this->rules);
-        $validated["user_id"] = auth()->id(); 
+        $validated["user_id"] = auth()->id();
+        if($request->hasFile('imagem'))
+        {
+            $categoria_image = $request->file('imagem');
+            $path = $categoria_image->store('/category_img', 'public');
+            // dd($path);
+            $validated['imagem'] = $path;
+        }
         Category::create($validated);
         return redirect()->route('admin.categories.create')->with('success', 'Categoria criada com sucesso!');
     }
@@ -72,6 +80,13 @@ class AdminCategoriesController extends Controller
     {
         $this->rules['slug'] = ['required', Rule::unique('categories')->ignore($category)];
         $validated = $request->validate($this->rules);
+        if($request->hasFile('imagem'))
+        {
+            $categoria_image = $request->file('imagem');
+            $path = $categoria_image->store('/category_img', 'public');
+            // dd($path);
+            $validated['imagem'] = $path;
+        }
         $category->update($validated);
         return redirect()->route('admin.categories.edit', $category)->with('success', 'Categoria atualizada com sucesso!');
     }

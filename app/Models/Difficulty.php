@@ -11,7 +11,7 @@ class Difficulty extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["nome"];
+    protected $fillable = ["nome", "slug"];
 
     public function posts()
     {

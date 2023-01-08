@@ -6,117 +6,301 @@
 @section("style")
 @endsection
 
-<!-- Banner-->
-<header class=" border-bottom" style="background-color: #fff;">
-    <div class="">
-        <div id="carouselExampleCaptions" class=" carousel slide mY-5" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                @foreach($latest_posts as $key => $latest_post)
-                <div class="carousel-item {{ $key == 0 ? 'active' : '' }} position-relative">
-                    <a class="a-blog-img" href="{{ route('posts.show', $latest_post) }}"><img src="{{ asset($latest_post->image ? 'storage/' . $latest_post->image->path : 'storage/placeholders/placeholder_capa.svg' . '') }}" class="d-block blog-img-slide" alt="..." width="100%" height="auto"></a>
-                    {{-- <a class="a-blog-img" href="{{ route('posts.show', $latest_post) }}"><img src="{{ asset('storage/' .$latest_post->image->path) }}" class="d-block blog-img-slide" alt="..." width="100%" height="auto"></a> --}}
-                    <div class="carousel-caption d-md-block position-absolute top-50 start-50 translate-middle" width="100%" height="auto">
-                        <a href="{{ route('posts.show', $latest_post) }}" class="text-decoration-none text-white">
-                            <h4 class="fw-bolder mb-1">{{ $latest_post->category->nome }}</h4>
-                        </a>
-                        <a href="{{ route('posts.show', $latest_post) }}" class="text-decoration-none text-white">
-                            <h1 class="fw-bolder mb-1">{{ $latest_post->titulo }}</h1>
-                        </a>
-                        <div class="info-icon position-relative">
-                            <p class="mx-4"><i class="fa-solid fa-stopwatch"></i> <span>{{ $latest_post->tempo_preparo }} min</span></p>
-                            <div class="separador"></div>
-                            <p class="mx-4"><i class='bx bx-dish'></i> <span>{{ $latest_post->difficulty->nome }}</span></p>
-                            <div class="separador"></div>
-                            <p class="mx-4"><i class="fa-sharp fa-solid fa-utensils"></i> <span>{{ $latest_post->qtd_porcao }} @if($latest_post->qtd_porcao > 1 ) Porções @else Porção @endif</span></p>
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        <div class="hero__item">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 p-0">
+                        <div class="hero__inside__item hero__inside__item--wide set-bg"
+                            data-setbg="{{ asset($latest_posts[0]->image ? 'storage/' . $latest_posts[0]->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}">
+                            <div class="hero__inside__item__text">
+                                <div class="hero__inside__item--meta">
+                                    <span>{{ $latest_posts[0]->created_at->format('d') }}</span>
+                                    <p>{{ $latest_posts[0]->created_at->format('M') }}</p>
+                                </div>
+                                <div class="hero__inside__item--text">
+                                    <ul class="label">
+                                        <li>{{ $latest_posts[0]->category->nome }}</li>
+                                    </ul>
+                                    <h4><a href="{{ route('posts.show', $latest_posts[0]->slug) }}" class="text-white">{{ $latest_posts[0]->titulo }}</a></h4>
+                                    <ul class="widget">
+                                        <li><span>por {{ $latest_posts[0]->author->full_name }}</span></li>
+                                        <li><span>{{ $latest_posts[0]->difficulty->nome }}</span></li>
+                                        <li><span>{{ $latest_posts[0]->qtd_porcao }} @if($latest_posts[0]->qtd_porcao > 1 ) Porções @else Porção @endif</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6  p-0">
+                        @foreach($latest_posts->slice(1,-2)  as $post)
+                        <div class="hero__inside__item hero__inside__item--small set-bg"
+                            data-setbg="{{ asset($post->image ? 'storage/' . $post->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}">
+                            <div class="hero__inside__item__text">
+                                <div class="hero__inside__item--meta">
+                                    <span>{{ $post->created_at->format('d') }}</span>
+                                    <p>{{ $post->created_at->format('M') }}</p>
+                                </div>
+                                <div class="hero__inside__item--text">
+                                    <ul class="label">
+                                        <li>{{ $post->category->nome }}</li>
+                                    </ul>
+                                    <h5><a href="{{ route('posts.show', $post->slug) }}" class="text-white">{{ $post->titulo }}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="col-lg-3 col-md-6  p-0">
+                        <div class="hero__inside__item set-bg" data-setbg="{{ asset($latest_posts[3]->image ? 'storage/' . $latest_posts[3]->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}">
+                            <div class="hero__inside__item__text">
+                                <div class="hero__inside__item--meta">
+                                    <span>{{ $latest_posts[3]->created_at->format('d') }}</span>
+                                    <p>{{ $latest_posts[3]->created_at->format('M') }}</p>
+                                </div>
+                                <div class="hero__inside__item--text">
+                                    <ul class="label">
+                                        <li>{{ $latest_posts[3]->category->nome }}</li>
+                                    </ul>
+                                    <h5><a href="{{ route('posts.show', $latest_posts[3]->slug) }}" class="text-white">{{ $latest_posts[3]->titulo }}</a></h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
             </div>
         </div>
-    </div>
-</header>
-<!-- Page content-->
-<div class="container mt-4">
-    <h3 class="fw-bolder mb-3">{{ $main_section_title }}</h3>
-    <div class="row">
-        <!-- Blog Main-->
-        <div class="col-lg-8">
-            <div class="row">
-                @forelse($posts as $post)
-                <div class="col-lg-6">
-                    <!-- Blog post-->
-                    <div class="card mb-4 rounded-5 " >
-                        <a href="{{ route('posts.show', $post) }}"><img class="card-img-top blog-img-post" src="{{ asset($post->image ? 'storage/' . $post->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="..." /></a>
-                        {{-- <a href="{{ route('posts.show', $post) }}"><img class="card-img-top blog-img-post" src="{{ asset('storage/' .$post->image->path) }}" alt="..." /></a> --}}
-                        <div class="card-body">
-                            {{-- <div style="display: flex">
-                                <div class="small text-muted">{{ $post->created_at->diffForHumans() . ' |' }} </div>
-                                <div class="small text-muted">{{ '| ' . $post->author->first_name . ' ' . $post->author->last_name }}</div>
-
-                            </div> --}}
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{ $post->category->nome }}</a>
-                            <a href="{{ route('posts.show', $post) }}" class="text-decoration-none text-dark"><h2 class="card-title h4">{{ \Str::limit($post->titulo, 25) }}</h2></a>
-                            <div class="info-icon position-relative">
-                                <p class="mx-4 text-dark"><i class="fa-solid fa-stopwatch"></i> <span>{{ $post->tempo_preparo }} min</span></p>
-                                <div class="separador border-dark"></div>
-                                <p class="mx-4"><i class='bx bx-dish'></i> <span>{{ $post->difficulty->nome }}</span></p>
-                                <div class="separador border-dark"></div>
-                                <p class="mx-4"><i class="fa-sharp fa-solid fa-utensils"></i> <span>{{ $post->qtd_porcao }} @if($post->qtd_porcao > 1 ) Porções @else Porção @endif</span></p>
+        {{-- Slide Part 2 --}}
+        {{-- <div class="hero__item">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 p-0">
+                        <div class="hero__inside__item hero__inside__item--wide set-bg"
+                            data-setbg="{{ asset($latest_posts[0]->image ? 'storage/' . $latest_posts[0]->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}">
+                            <div class="hero__inside__item__text">
+                                <div class="hero__inside__item--meta">
+                                    <span>08</span>
+                                    <p>Aug</p>
+                                </div>
+                                <div class="hero__inside__item--text">
+                                    <ul class="label">
+                                        <li>{{ $latest_posts[0]->category->nome }}</li>
+                                    </ul>
+                                    <h4><a href="{{ route('posts.show', $latest_posts[0]->slug) }}" class="text-white">{{ $latest_posts[0]->titulo }}</a></h4>
+                                    <ul class="widget">
+                                        <li>by <span>Admin</span></li>
+                                        <li>3 min read</li>
+                                        <li>20 Comment</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>   
+                    </div>
+                    <div class="col-lg-3 col-md-6  p-0">
+                        @foreach($latest_posts->slice(1,-2)  as $post)
+                        <div class="hero__inside__item hero__inside__item--small set-bg"
+                            data-setbg="{{ asset($post->image ? 'storage/' . $post->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}">
+                            <div class="hero__inside__item__text">
+                                <div class="hero__inside__item--meta">
+                                    <span>08</span>
+                                    <p>Aug</p>
+                                </div>
+                                <div class="hero__inside__item--text">
+                                    <ul class="label">
+                                        <li>{{ $post->category->nome }}</li>
+                                    </ul>
+                                    <h5><a href="{{ route('posts.show', $post->slug) }}" class="text-white">{{ $post->titulo }}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="col-lg-3 col-md-6  p-0">
+                        <div class="hero__inside__item set-bg" data-setbg="{{ asset($latest_posts[3]->image ? 'storage/' . $latest_posts[3]->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}">
+                            <div class="hero__inside__item__text">
+                                <div class="hero__inside__item--meta">
+                                    <span>08</span>
+                                    <p>Aug</p>
+                                </div>
+                                <div class="hero__inside__item--text">
+                                    <ul class="label">
+                                        <li>{{ $latest_posts[3]->category->nome }}</li>
+                                    </ul>
+                                    <h5><a href="{{ route('posts.show', $latest_posts[3]->slug) }}" class="text-white">{{ $latest_posts[3]->titulo }}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                @empty
-                    <p class="lead">Nenhum post para mostrar.</p>
-                @endforelse
-                {{ $posts->links() }}
-                
             </div>
-            <!-- Pagination-->
-            {{-- <nav aria-label="Pagination">
-                <hr class="my-0" />
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                </ul>
-            </nav> --}}
-        </div>
-        <!-- Side widgets-->
-        <div class="col-lg-4">
-            <!-- Search widget-->
-            <x-blog.side-search />
-            
-            <!-- Categories widget-->
-            <x-blog.side-categories :categories="$categories"/>
-            
-            <!-- Recent Posts-->
-            <x-blog.side-latest-posts :latestPosts="$latest_posts"/>
-            
-            <!-- Tag widget -->
-            <x-blog.side-tags :tags="$tags"/>
-            
+        </div> --}}
+        
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- Categories Section Begin -->
+<section class="categories spad">
+    <div class="container">
+        <div class="row">
+            @for ($i = 0; $i < 4; $i++)
+            @if($categories[$i]->nome != "Sem Categoria") 
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="categories__item set-bg" data-setbg="{{ asset($categories[$i]->imagem ? 'storage/' . $categories[$i]->imagem : 'img/placeholders/placeholder_post.jpg') }}">
+                    <div class="categories__hover__text">
+                        <h5><a class="text-black-50" href="{{ route('categories.show', $categories[$i]) }}">{{ $categories[$i]->nome }}</a></h5>
+                        <p>{{ $categories[$i]->posts_count }} posts</p>
+                    </div>
+                </div>
+
+            </div>
+            @endif
+            @endfor
+            {{-- @foreach($categories->slice(2) as $category)
+            @if($category->nome != "Sem Categoria") 
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="categories__item set-bg" data-setbg="{{ asset($category->imagem ? 'storage/' . $category->imagem : 'img/placeholders/placeholder_post.jpg') }}">
+                    <div class="categories__hover__text">
+                        <h5><a class="text-black-50" href="{{ route('categories.show', $category) }}">{{ $category->nome }}</a></h5>
+                        <p>{{ $category->posts_count }} posts</p>
+                    </div>
+                </div>
+
+            </div>
+            @endif
+            @endforeach --}}
         </div>
     </div>
-</div>
+    <div class="categories__post">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <div class="categories__post__item categories__post__item--large">
+                        <div class="categories__post__item__pic set-bg"
+                            data-setbg="{{ asset($latest_posts[0]->image ? 'storage/' . $latest_posts[0]->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}">
+                            <div class="post__meta">
+                                <h4>{{ $latest_posts[0]->created_at->format('d') }}</h4>
+                                <span>{{ $latest_posts[0]->created_at->format('M') }}</span>
+                            </div>
+                        </div>
+                        <div class="categories__post__item__text">
+                            <ul class="post__label--large">
+                                <li>{{ $latest_posts[0]->category->nome }}</li>
+                                {{-- <li>Desserts</li> --}}
+                            </ul>
+                            <h3><a href="{{ route('posts.show', $latest_posts[0]->slug) }}">{{ $latest_posts[0]->titulo }}</a></h3>
+                            <ul class="post__widget">
+                                <li>por <span>{{ $post->author->full_name }}</span></li>
+                                <li>{{ $post->difficulty->nome }}</li>
+                                <li>{{ $post->qtd_porcao }} @if($post->qtd_porcao > 1 ) Porções @else Porção @endif</li>
+                            </ul>
+                            <p>{{ $latest_posts[0]->resumo }}</p>
+                            <a href="{{ route('posts.show', $latest_posts[0]->slug) }}" class="primary-btn">Ler mais</a>
+                            {{-- <div class="post__social">
+                                <span>Share</span>
+                                <a href="#"><i class="fa fa-facebook"></i> <span>82</span></a>
+                                <a href="#"><i class="fa fa-twitter"></i> <span>24</span></a>
+                                <a href="#"><i class="fa fa-envelope-o"></i> <span>08</span></a>
+                            </div> --}}
+                        </div>
+                    </div>
+                    <!-- post-ads-2 -->
+                    <x-blog.post-ads-2/>
+                    <div class="row">
+                        @forelse($posts as $post)
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="categories__post__item">
+                                <div class="categories__post__item__pic small__item set-bg"
+                                    data-setbg="{{ asset($post->image ? 'storage/' . $post->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}">
+                                    <div class="post__meta">
+                                        <h4>{{ $post->created_at->format('d') }}</h4>
+                                        <span>{{ $post->created_at->format('M') }}</span>
+                                    </div>
+                                </div>
+                                <div class="categories__post__item__text">
+                                    <span class="post__label">{{ $post->category->nome }}</span>
+                                    <h3><a href="{{ route('posts.show', $post->slug) }}">{{ $post->titulo }}</a></h3>
+                                    <ul class="post__widget">
+                                        <li>por <span>{{ $post->author->full_name }}</span></li>
+                                        <li>{{ $post->difficulty->nome }}</li>
+                                        <li>{{ $post->qtd_porcao }} @if($post->qtd_porcao > 1 ) Porções @else Porção @endif</li>
+                                    </ul>
+                                    <p>{{ $post->resumo }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                        <p class="lead">Nenhum post para mostrar.</p>
+                        @endforelse
+                        {{-- <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="categories__post__item">
+                                <div class="categories__post__item__pic smaller__large set-bg"
+                                    data-setbg="img/categories/categories-post/cp-3.jpg">
+                                    <div class="post__meta">
+                                        <h4>08</h4>
+                                        <span>Aug</span>
+                                    </div>
+                                </div>
+                                <div class="categories__post__item__text">
+                                    <span class="post__label">Dinner</span>
+                                    <h3><a href="#">17 Perfect Gifts for Your Vegan Friend Because Sometimes...</a>
+                                    </h3>
+                                    <ul class="post__widget">
+                                        <li>by <span>Admin</span></li>
+                                        <li>3 min read</li>
+                                        <li>20 Comment</li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                        tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                        gravida...</p>
+                                </div>
+                            </div> 
+                            
+                        </div> --}}
+                        <div class="col-lg-12 text-center">
+                            {{ $posts->links() }}
+                            <div class="load__more__btn">
+                                {{-- <a href="#">Load more</a> --}}
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- Side widgets-->
+                <div class="col-lg-4">
+                            
+                    <!-- About Me-->
+                    <x-blog.side-about-me/>
+
+                    <!-- Follow Us -->
+                    <x-blog.side-follow/>
+
+                    <!-- Recent Posts-->
+                    <x-blog.side-latest-posts :latestPosts="$latest_posts"/>
+
+                    <!-- Google Ads-->
+                    <x-blog.side-ads/>
+                    
+                    <!-- Categories widget-->
+                    <x-blog.side-categories :categories="$categories"/>
+
+                    <!-- Tag widget -->
+                    <x-blog.side-tags :tags="$tags"/>
+                    
+                    <!-- Subscribe widget -->
+                    <x-blog.side-subscribe />
+
+                    <!-- Search widget-->
+                    <x-blog.navbar-search />
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+
 @endsection
 
 @section("script")

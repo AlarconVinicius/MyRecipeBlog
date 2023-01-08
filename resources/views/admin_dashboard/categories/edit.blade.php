@@ -27,7 +27,7 @@
                 <div class="card-body p-4">
                     <h5 class="card-title">Editar Categoria: {{ $category->nome }}</h5>
                     <hr/>
-                    <form action="{{ route('admin.categories.update', $category) }}" method="POST">
+                    <form action="{{ route('admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="form-body mt-4">
@@ -50,6 +50,23 @@
                                                 @error('slug')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="mb-3">
+                                                            <label for="input_image" class="form-label">Imagem</label>
+                                                            <input class="form-control" id="input_image" name="imagem" type="file">
+                
+                                                            @error('imagem')
+                                                                <p class="text-danger">{{ $message }}</p>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <img style='width: 100%' src="{{ asset($category->imagem ? 'storage/' . $category->imagem : 'img/placeholders/placeholder_post.jpg') }}" alt="Foto do Sobre" class='img-responsive img-thumbnail p-2'>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         

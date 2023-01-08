@@ -16,14 +16,8 @@
                                 <a class="nav-link" href="#">   <i class='bx bx-search'></i>
                                 </a>
                             </li>
-                            <li class="nav-item mobile-search-icon">
-                                <a href="{{ url('index') }}" target="_blank">
-                                    <div class="parent-icon"><i class='bx bx-home-circle'></i></div>
-                                    <div class="menu-title">Dashboard</div>
-                                </a>
-                            </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}" title="Blog">
+                                <a class="nav-link" href="{{ route('home') }}" title="Blog" target="_blank">
                                     <i class='bx bx-home-circle'></i>
                                 </a>
                             </li>

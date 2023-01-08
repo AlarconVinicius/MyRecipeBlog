@@ -1,39 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>@yield('title') | Receitas de Casal</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="#" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        
-        <!-- Unique Styles -->
-        @yield("style")
-    </head>
-    <body class="bg-light">
-        <!-- Responsive navbar-->
-        <x-blog.navbar />
-        
-        @yield('content')
-        
-        <!-- Footer-->
-        <x-blog.footer />
-        
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+<html lang="pt-br">
 
-        <!-- Unique Scripts -->
-        @yield("script")
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Foodeiblog Template">
+    <meta name="keywords" content="Foodeiblog, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title') | Receitas de Casal</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{ asset('blog_assets/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('blog_assets/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('blog_assets/css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('blog_assets/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('blog_assets/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('blog_assets/css/style.css') }}" type="text/css">
+
+    <!-- Unique Styles -->
+    @yield("style")
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <!-- Responsive navbar-->
+    <x-blog.navbar-responsive />
+    <!-- Header-->
+    <x-blog.header />
+    <!-- Main Content-->
+    @yield('content')
+    <!-- Footer-->
+    <x-blog.footer />
+
+    <!-- Js Plugins -->
+    <script src="{{ asset('blog_assets/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('blog_assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('blog_assets/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('blog_assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('blog_assets/js/main.js') }}"></script>
+
+    <!-- Unique Scripts -->
+    @yield("script")
+</body>
 </html>
-

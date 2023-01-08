@@ -12,7 +12,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["nome", "slug", "user_id"];
+    protected $fillable = ["nome", "slug", "imagem", "user_id"];
 
     public function posts()
     {

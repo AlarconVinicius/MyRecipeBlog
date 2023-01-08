@@ -23,6 +23,7 @@ class AdminSettingController extends Controller
     public function update()
     {
         $validated = request()->validate([
+            'sobre_resumo' => 'nullable|min:50,max:500',
             'sobre_quem_somos' => 'nullable|min:50,max:500',
             'sobre_image' => 'nullable|image',
         ]);

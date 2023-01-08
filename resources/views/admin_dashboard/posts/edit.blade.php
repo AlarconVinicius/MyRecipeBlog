@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="border border-3 p-4 rounded row">
-                                        <div class="col-6 mb-3">
+                                        <div class="col-4 mb-3">
                                             <label for="inputProductTitle" class="form-label">Título</label>
                                             <input type="text" name="titulo" value="{{ old('titulo', $post->titulo) }}" required class="form-control" id="inputProductTitle" placeholder="Enter product title">
 
@@ -50,7 +50,7 @@
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div class="col-6 mb-3">
+                                        <div class="col-4 mb-3">
                                             <label for="inputProductTitle" class="form-label">Slug</label>
                                             <input type="text" name="slug" value="{{ old('slug', $post->slug) }}" required class="form-control" id="inputProductTitle" placeholder="Enter product title">
 
@@ -58,7 +58,7 @@
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div class="col-3 mb-3">
+                                        <div class="col-4 mb-3">
                                             <label for="inputProductDescription" class="form-label">Categoria</label>
                                             <div class="mb-3">
                                                 <select name="category_id" required class="single-select">
@@ -68,6 +68,20 @@
                                                 </select>
 
                                                 @error('category_id')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-3 mb-3">
+                                            <label for="inputProductDescription" class="form-label">Dificuldade</label>
+                                            <div class="mb-3">
+                                                <select name="difficulty_id" required class="single-select">
+                                                    @foreach($difficulties as $key => $difficulty)
+                                                    <option {{ $post->difficulty_id === $key ? 'selected' : '' }} value="{{ $key }}">{{ $difficulty }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                @error('difficulty_id')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>

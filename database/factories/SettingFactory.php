@@ -14,8 +14,9 @@ class SettingFactory extends Factory
     public function definition()
     {
         return [
-            'sobre_quem_somos' => $this->faker->paragraph(),
-            'sobre_image' => 'storage/placeholders/about_image.jpg',
+            'sobre_resumo' => $this->faker->paragraph(2, true),
+            'sobre_quem_somos' => $this->faker->paragraph(10, true),
+            'sobre_image' => 'img/placeholders/about_image.jpg',
         ];
     }
 }

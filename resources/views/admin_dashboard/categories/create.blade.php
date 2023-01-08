@@ -27,7 +27,7 @@
                 <div class="card-body p-4">
                     <h5 class="card-title">Nova Categoria</h5>
                     <hr/>
-                    <form action="{{ route('admin.categories.store') }}" method="POST">
+                    <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-body mt-4">
                             <div class="row">
@@ -49,6 +49,16 @@
                                                 @error('slug')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <div class="mb-3">
+                                                    <label for="input_image" class="form-label">Imagem</label>
+                                                    <input class="form-control" id="input_image" name="imagem" type="file">
+        
+                                                    @error('imagem')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
                                         

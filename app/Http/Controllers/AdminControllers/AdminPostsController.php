@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Post;
 
 use App\Models\Category;
+use App\Models\Difficulty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,6 +20,7 @@ class AdminPostsController extends Controller
         'tempo_preparo' => 'required|numeric',
         'qtd_porcao' => 'required|numeric',
         'category_id' => 'required|numeric',
+        'difficulty_id' => 'required|numeric',
         'capa_post' => 'required|file|mimes:jpg,png',
         // 'capa_post' => 'required|file|mimes:jpg,png,webp,svg,jpeg|dimensions:max_width=800,max_height=300',
     ];
@@ -42,11 +44,13 @@ class AdminPostsController extends Controller
         $main_section_title = "Adicionar Post";
 
         $categories = Category::pluck('nome', 'id');
+        $difficulties = Difficulty::pluck('nome', 'id');
 
         return view('admin_dashboard.posts.create', [
             'page_section_title' => $page_section_title,
             'main_section_title' => $main_section_title,
             'categories' => $categories,
+            'difficulties' => $difficulties,
         ]);
     }
 
@@ -55,21 +59,22 @@ class AdminPostsController extends Controller
     {
         $validated = $request->validate($this->rules);
         $validated['user_id'] = auth()->id();
-        $validated['difficulty_id'] = 1;
         $post = Post::create($validated);
-
+        $capa_post = $request->file('capa_post');
+        // dd($capa_post);
         if($request->has('capa_post'))
         {
             $capa_post = $request->file('capa_post');
             $filename = $capa_post->getClientOriginalName();
             $file_extension = $capa_post->getClientOriginalExtension();
-            $path = $capa_post->store('images', 'public');
-
+            $path = $capa_post->store('/post_img', 'public');
+            
             $post->image()->create([
                 'nome' => $filename,
                 'extensao' => $file_extension,
                 'path' => $path
             ]);
+            // dd($capa_post);
 
         }
         $tags = explode(',', $request->input('tags'));
@@ -96,6 +101,7 @@ class AdminPostsController extends Controller
         $main_section_title = "Editar Post";
 
         $categories = Category::pluck('nome', 'id');
+        $difficulties = Difficulty::pluck('nome', 'id');
 
         $tags = '';
         foreach($post->tags as $key => $tag) {
@@ -111,6 +117,7 @@ class AdminPostsController extends Controller
             'post' => $post,
             'tags' => $tags,
             'categories' => $categories,
+            'difficulties' => $difficulties,
         ]);
     }
 
@@ -118,7 +125,6 @@ class AdminPostsController extends Controller
     {
         $this->rules['capa_post'] = 'nullable|file|mimes:jpg,png';
         $validated = $request->validate($this->rules);
-        $validated['difficulty_id'] = 1;
 
         $post->update($validated);
 
@@ -127,7 +133,7 @@ class AdminPostsController extends Controller
             $capa_post = $request->file('capa_post');
             $filename = $capa_post->getClientOriginalName();
             $file_extension = $capa_post->getClientOriginalExtension();
-            $path = $capa_post->store('images', 'public');
+            $path = $capa_post->store('/post_img', 'public');
 
             $post->image()->update([
                 'nome' => $filename,

@@ -6,36 +6,45 @@
 @section("style")
 @endsection
 
-<!-- Page content-->
-<div class="container mt-4">
-    <h3 class="fw-bolder mb-3">{{ $main_section_title }}</h3>
-    <div class="row">
-        <!-- Blog Main-->
-        <div class="col-lg-12">
+<!-- About Section Begin -->
+<section class="about spad">
+    <div class="container">
+        <div class="about__text">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h2>{{ $main_section_title }}</h2>
+                        <div class="breadcrumb__option">
+                            <a href="{{ route('home') }}">Início</a>
+                            <span>{{ $main_section_title }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <!-- Blog post-->
-                    <div class="card mb-4 rounded-3 " >
-                        <img class="card-img-top" src="{{ asset($setting->sobre_image ? $setting->sobre_image : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="Imagem do Sobre" />
-                        {{-- <img class="card-img-top blog-img-post" src="{{ asset($post->image ? 'storage/' . $post->image->path : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="..." /> --}}
-                        
-                    </div>   
+                    <div class="about__pic__item__large">
+                        <img src="{{ asset($setting->sobre_image ? $setting->sobre_image : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="">
+                    </div>
+                    {{-- <div class="about__pic">
+                        <div class="about__pic__item">
+                            <img src="{{ asset($setting->sobre_image ? $setting->sobre_image : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="">
+                        </div>
+                        <div class="about__pic__item">
+                            <img src="{{ asset($setting->sobre_image ? $setting->sobre_image : 'storage/placeholders/placeholder_capa.webp' . '') }}" alt="">
+                        </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-6">
-                    <!-- Blog post-->
-                    <div class="card mb-4 rounded-3 " >
-                        <div class="card-body">
-                            <h5 class="card-title">Sobre Nós</h5>
-                            <p class="card-text">{!! $setting->sobre_quem_somos !!}</p>
-                          </div>                        
-                    </div>   
+                    <div class="about__right__text">
+                        {!! $setting->sobre_quem_somos !!}
+                    </div>
                 </div>
-                
             </div>
-            
-        </div>        
+        </div>
     </div>
-</div>
+</section>
+<!-- About Section End -->
 @endsection
 
 @section("script")
