@@ -40,6 +40,8 @@
                         {!! $setting->sobre_quem_somos !!}
                     </div>
                 </div>
+                <!-- Search widget-->
+                <x-blog.navbar-search />
             </div>
         </div>
     </div>

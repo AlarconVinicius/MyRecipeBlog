@@ -17,7 +17,7 @@
                             <h2>Buscando por: <span>{{ $main_section_title }}</span></h2>
                             <div class="breadcrumb__option">
                                 <a href="#">Home</a>
-                                <span>Recipes</span>
+                                <span>{{ $main_section_title }}</span>
                             </div>
                         </div>
                         @forelse($posts as $post)

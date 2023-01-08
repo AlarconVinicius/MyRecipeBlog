@@ -59,6 +59,8 @@
                     <div class="single-post__recipe__details__indegradients">
                         {!! $post->conteudo !!}
                     </div>
+                    <!-- Search widget-->
+                    <x-blog.navbar-search />
                     
                 </div>
                 
