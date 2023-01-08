@@ -226,7 +226,6 @@
                                         <li>{{ $post->difficulty->nome }}</li>
                                         <li>{{ $post->qtd_porcao }} @if($post->qtd_porcao > 1 ) Porções @else Porção @endif</li>
                                     </ul>
-                                    <p>{{ $post->resumo }}</p>
                                 </div>
                             </div>
                         </div>

@@ -27,14 +27,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="single-post__social__item">
+                {{-- <div class="single-post__social__item">
                     <ul>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
                     </ul>
-                </div>
+                </div> --}}
                 <div class="single-post__top__text">
                     <p>{{ $post->resumo }}</p>
                 </div>
@@ -50,7 +50,7 @@
                                 <span>{{ $post->tempo_preparo }} min</span>
                             </li>
                             <li>
-                                <h5><i class="fa fa-clock-o"></i>dificuldade</h5>
+                                <h5><i class="fa fa-tachometer"></i>dificuldade</h5>
                                 <span>{{ $post->difficulty->nome }}</span>
                             </li>
                             <li><a href="#" class="primary-btn"><i class="fa fa-print"></i>Imprimir</a></li>
