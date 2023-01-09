@@ -83,7 +83,7 @@
                             <li class="{{ preg_match('/about/', Route::currentRouteName()) ? 'active' : '' }}"><a href="{{ route('about') }}">Sobre</a></li>
                             @auth
                             <li class="{{ preg_match('/admin/', Route::currentRouteName()) ? 'active' : '' }}"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                            <li class="nav-item"><a class="nav-link active" aria-current="page"  
+                            <li class="nav-item"><a
                                 onclick="event.preventDefault();
                                 document.getElementById('nav-logout-form').submit();"
                                 href="#">Sair</a>
