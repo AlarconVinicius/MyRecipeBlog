@@ -16,7 +16,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["titulo", "slug", "resumo", "conteudo", "tempo_preparo", "qtd_porcao", "user_id", "category_id", "difficulty_id"];
+    protected $fillable = ["titulo", "slug", "resumo", "conteudo", "tempo_preparo", "qtd_porcao", "user_id", "category_id", "difficulty_id", "approved"];
 
     public function author()
     {
@@ -41,5 +41,10 @@ class Post extends Model
     public function image()
     { 
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('approved', 1);
     }
 }

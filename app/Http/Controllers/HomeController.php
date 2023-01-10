@@ -17,14 +17,12 @@ class HomeController extends Controller
         
         if(request('search')){
             $search = request('search');
-            $posts = Post::where('titulo', 'LIKE', "%$search%");
+            $posts = Post::where('titulo', 'LIKE', "%$search%")->approved()->paginate(10);
 
             $page_section_title = $search;
             $main_section_title = $search;
-            
-            $posts = $posts->paginate(10);
 
-            $latest_posts = Post::latest()->take(3)->get();
+            $latest_posts = Post::latest()->approved()->take(3)->get();
             $categories = Category::withCount('posts')->orderBy('posts_count', 'desc')->take(10)->get();
             $tags = Tag::latest()->take(20)->get();
 
@@ -39,8 +37,8 @@ class HomeController extends Controller
             ]);
                 // ->orWhere('category_id', 'LIKE', "%$search%");
         }
-        $posts = Post::orderBy('id', 'desc')->paginate(12);
-        $latest_posts = Post::latest()->orderBy('views', 'desc')->orderBy('id', 'desc')->take(5)->get();
+        $posts = Post::orderBy('id', 'desc')->approved()->paginate(12);
+        $latest_posts = Post::latest()->approved()->orderBy('views', 'desc')->orderBy('id', 'desc')->take(5)->get();
         // dd($latest_postss[0]->id);
         $categories = Category::withCount('posts')->orderBy('posts_count', 'desc')->take(10)->get();
         $tags = Tag::latest()->take(20)->get();

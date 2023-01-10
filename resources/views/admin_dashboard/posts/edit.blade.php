@@ -126,13 +126,19 @@
                                                 </select>
                                             </div>
                                         </div> --}}
-                                        <div class="mb-3">
+                                        <div class="col-12 mb-3">
                                             <label for="inputProductDescription" class="form-label">Resumo</label>
                                             <textarea class="form-control" name="resumo" required id="inputProductDescription" rows="2">{{ old('resumo', $post->resumo) }}</textarea>
 
                                             @error('resumo')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <div class="form-check form-switch">
+                                                <input name="approved" {{ $post->approved ? 'checked' : '' }} class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                                <label class="form-check-label {{ $post->approved ? 'text-success' : 'text-warning' }}" for="flexSwitchCheckChecked">{{ $post->approved ? "Aprovado" : "Não Aprovado"}}</label>
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputProductDescription" class="form-label">Conteúdo</label>

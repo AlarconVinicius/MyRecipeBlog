@@ -125,7 +125,7 @@ class AdminPostsController extends Controller
     {
         $this->rules['capa_post'] = 'nullable|file|mimes:jpg,png';
         $validated = $request->validate($this->rules);
-
+        $validated['approved'] = $request->input('approved') !== null;
         $post->update($validated);
 
         if($request->has('capa_post'))

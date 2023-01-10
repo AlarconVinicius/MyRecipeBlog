@@ -29,7 +29,7 @@ class CreatePostsTable extends Migration
             $table->foreign('difficulty_id')->references('id')->on('difficulties');
 
             $table->integer('views')->default(0);
-            $table->string('status')->default('publicado');
+            $table->boolean('approved')->default(1);
 
             $table->timestamps();
         });
